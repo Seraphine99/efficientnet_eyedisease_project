@@ -1,7 +1,7 @@
 import splitfolders
 
 # Path to your "Raw_Data" folder
-input_folder = "/Users/samridda/efficientnet_cataract_project/cataract" 
+input_folder = "raw_data" 
 
 # Where the organized folders will be created
 output_folder = "cataract_dataset_fundus"
