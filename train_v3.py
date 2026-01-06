@@ -4,8 +4,9 @@ from tensorflow.keras.applications import EfficientNetB0
 from tensorflow.keras.applications.efficientnet import preprocess_input # 🔥 CRITICAL
 from tensorflow.keras import layers, models, optimizers
 
+
 # 1. SETUP
-DATASET_PATH = 'cataract_dataset_fundus'
+DATASET_PATH = 'cataract_dataset_external'  # Update with your dataset path
 IMG_SIZE = (224, 224)
 BATCH_SIZE = 32
 
