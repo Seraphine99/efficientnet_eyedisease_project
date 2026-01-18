@@ -3,7 +3,7 @@ import os
 
 # 1. Configuration
 input_folder = "raw_data" 
-output_folder = "cataract_dataset_fundus"
+output_folder = "dataset_fundus"
 
 # 2. Perform the Split
 print(f"🚀 Splitting images from '{input_folder}' into '{output_folder}'...")
