@@ -9,8 +9,8 @@ from sklearn.metrics import confusion_matrix, classification_report
 
 # --- SETTINGS ---
 DATA_DIR = 'dataset_fundus'
-IMG_SIZE = (224, 224)
-MODEL_NAME = 'eye_master_surgical_tuned_v3.keras'
+IMG_SIZE = (300, 300)
+MODEL_NAME = 'eye_model_final_clahe.keras'
 
 # --- DATA PREP ---
 test_datagen = ImageDataGenerator(preprocessing_function=preprocess_input)
