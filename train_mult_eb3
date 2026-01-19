@@ -41,7 +41,7 @@ val_gen = val_datagen.flow_from_directory(
 )
 
 # --- 3. MODEL ARCHITECTURE (B3 Upgrade) ---
-print("🚀 Building EfficientNet-B3 Model...")
+print("Building EfficientNet-B3 Model...")
 conv_base = EfficientNetB3(weights='imagenet', include_top=False, input_shape=(300, 300, 3))
 conv_base.trainable = False  # Start by freezing the base
 
@@ -57,7 +57,7 @@ model = models.Sequential([
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
 # --- 4. TRAINING ---
-print("📂 Starting Training Phase...")
+print("Starting Training Phase...")
 history = model.fit(
     train_gen,
     validation_data=val_gen,
@@ -66,7 +66,7 @@ history = model.fit(
 
 # --- 5. SAVING MODEL & PLOTTING ---
 model.save('eye_model_b3.keras')
-print("✅ Model Saved as eye_model_b3.keras")
+print("Model Saved as eye_model_b3.keras")
 
 # --- 6. GENERATE & SAVE GRAPHS ---
 def plot_and_save_history(history):
@@ -97,6 +97,6 @@ def plot_and_save_history(history):
     plt.tight_layout()
     plt.savefig('training_report_b3.png')
     plt.show()
-    print("📈 Graphs saved as training_report_b3.png")
+    print("Graphs saved as training_report_b3.png")
 
 plot_and_save_history(history)

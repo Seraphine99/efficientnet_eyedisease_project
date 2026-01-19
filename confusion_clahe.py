@@ -34,14 +34,14 @@ test_gen = test_datagen.flow_from_directory(
 )
 
 # --- 3. PREDICT ---
-print("🧠 Generating Predictions...")
+print("Generating Predictions...")
 predictions = model.predict(test_gen)
 y_pred = np.argmax(predictions, axis=1)
 y_true = test_gen.classes
 class_labels = list(test_gen.class_indices.keys())
 
 # --- 4. VISUALIZE ---
-print("\n📊 Generating Confusion Matrix Plot...")
+print("Generating Confusion Matrix Plot...")
 cm = confusion_matrix(y_true, y_pred)
 
 plt.figure(figsize=(10, 8))
@@ -53,12 +53,12 @@ plt.xlabel('Predicted Label')
 plt.savefig('final_confusion_matrix.png')
 plt.show()
 
-print("\n📝 FINAL MASTER REPORT:")
+print("FINAL MASTER REPORT:")
 print(classification_report(y_true, y_pred, target_names=class_labels))
 from sklearn.metrics import f1_score
 
 # --- 5. GENERATE F1-SCORE GRAPH ---
-print("📊 Generating F1-Score Report...")
+print("Generating F1-Score Report...")
 f1_scores = f1_score(y_true, y_pred, average=None)
 
 plt.figure(figsize=(10, 6))
@@ -77,4 +77,4 @@ plt.grid(axis='y', linestyle='--', alpha=0.7)
 plt.savefig('f1_score_report.png')
 plt.show()
 
-print("✅ F1 Graph saved as 'f1_score_report.png'")
+print("F1 Graph saved as 'f1_score_report.png'")

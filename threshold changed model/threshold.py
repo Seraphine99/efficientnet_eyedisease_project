@@ -17,7 +17,7 @@ test_gen = test_datagen.flow_from_directory(
 )
 
 # 2. Get the raw probability scores (0.0 to 1.0) instead of just the final answer
-print("🧠 Analyzing probabilities...")
+print("Analyzing probabilities...")
 predictions = model.predict(test_gen)
 
 # 3. SET THE SENSITIVITY THRESHOLD
@@ -35,5 +35,5 @@ for pred in predictions:
         final_preds.append(np.argmax(pred))
 
 # 4. Show the New Report
-print(f"\n📊 REPORT WITH {THRESHOLD*100}% GLAUCOMA THRESHOLD:")
+print(f"REPORT WITH {THRESHOLD*100}% GLAUCOMA THRESHOLD:")
 print(classification_report(test_gen.classes, final_preds, target_names=test_gen.class_indices.keys()))

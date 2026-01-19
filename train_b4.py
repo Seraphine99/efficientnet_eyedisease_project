@@ -51,7 +51,7 @@ class_weights = {0: 1.0, 1: 1.0, 2: 5.0, 3: 0.8}
 
 model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=1e-5), loss='categorical_crossentropy', metrics=['accuracy'])
 
-print("🚀 Training B4 Master Model...")
+print("Training B4 Master Model...")
 model.fit(train_gen, validation_data=val_gen, epochs=EPOCHS, class_weight=class_weights)
 
 model.save('eye_model_b4_master.keras')

@@ -15,7 +15,7 @@ THRESHOLD = 0.25 # Our clinical sensitivity fix
 LAST_CONV_LAYER_NAME = "top_activation" # This is typical for EfficientNetB0
 
 # Load Model
-print("📂 Loading Model...")
+print("Loading Model...")
 model = load_model(MODEL_PATH)
 
 # --- GRAD-CAM FUNCTIONS ---
@@ -107,7 +107,7 @@ def drop(event):
     if file_path.startswith('"') and file_path.endswith('"'): # For paths with spaces
         file_path = file_path[1:-1]
 
-    print(f"📂 Processing: {file_path}")
+    print(f"Processing: {file_path}")
 
     if file_path.lower().endswith(('.png', '.jpg', '.jpeg')):
         try:
@@ -206,5 +206,5 @@ def draw_spectrum(canvas, width, height):
 # Draw it once at startup
 draw_spectrum(spec_canvas, canvas_width, canvas_height)
 
-print("🚀 Explainable UI Ready! Drag an image onto the window.")
+print("Explainable UI Ready! Drag an image onto the window.")
 root.mainloop()

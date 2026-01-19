@@ -14,7 +14,7 @@ model = load_model(MODEL_PATH)
 class_weights = {
     0: 1.0,  # Cataract
     1: 1.0,  # DR
-    2: 3.5,  # 🔥 HEAVY FOCUS ON GLAUCOMA
+    2: 3.5,  # HEAVY FOCUS ON GLAUCOMA
     3: 0.7   # Slightly de-emphasize Normal to reduce False Negatives
 }
 
@@ -63,23 +63,40 @@ val_gen = test_datagen.flow_from_directory(
 )
 
 # --- 5. FINE-TUNING ---
-print("🚀 Starting B3 Surgical Fine-Tuning...")
+print("Starting B3 Surgical Fine-Tuning...")
 history = model.fit(
     train_gen,
     validation_data=val_gen,
-    epochs=5, # 15 epochs is usually enough for fine-tuning
+    epochs=5,
     class_weight=class_weights
 )
 
 # --- 6. SAVE & PLOT ---
 model.save('eye_model_b3_weights.keras')
 
-plt.figure(figsize=(10, 4))
-plt.plot(history.history['accuracy'], label='Train Acc')
-plt.plot(history.history['val_accuracy'], label='Val Acc')
-plt.title('B3 Fine-Tuning Progress')
-plt.legend()
+# Create a side-by-side plot for Accuracy and Loss
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 5))
+
+# Accuracy Plot
+ax1.plot(history.history['accuracy'], label='Train Acc', marker='o')
+ax1.plot(history.history['val_accuracy'], label='Val Acc', marker='o')
+ax1.set_title('B3 Fine-Tuning Accuracy')
+ax1.set_xlabel('Epochs')
+ax1.set_ylabel('Accuracy')
+ax1.legend()
+ax1.grid(True)
+
+# Loss Plot
+ax2.plot(history.history['loss'], label='Train Loss', marker='o')
+ax2.plot(history.history['val_loss'], label='Val Loss', marker='o')
+ax2.set_title('B3 Fine-Tuning Loss')
+ax2.set_xlabel('Epochs')
+ax2.set_ylabel('Loss')
+ax2.legend()
+ax2.grid(True)
+
+plt.tight_layout()
 plt.savefig('b3_finetune_report.png')
 plt.show()
 
-print("✅ Fine-tuning complete! Saved as eye_model_b3_tuned.keras")
+print("Fine-tuning complete! Model saved and report generated.")

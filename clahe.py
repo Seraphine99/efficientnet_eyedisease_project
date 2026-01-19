@@ -47,11 +47,11 @@ train_gen = train_datagen.flow_from_directory('dataset_fundus/train', target_siz
 val_gen = test_datagen.flow_from_directory('dataset_fundus/test', target_size=IMG_SIZE, batch_size=BATCH_SIZE, class_mode='categorical', shuffle=False)
 
 # --- 4. THE FINAL RUN ---
-print("🔥 Running Final CLAHE-Enhanced Training...")
+print("Running Final CLAHE-Enhanced Training...")
 history = model.fit(train_gen, validation_data=val_gen, epochs=8, class_weight=class_weights)
 
 model.save('eye_model_final_clahe.keras')
-print("✅ MASTER MODEL SAVED: eye_model_final_clahe.keras")
+print("MASTER MODEL SAVED: eye_model_final_clahe.keras")
 
 # --- 5. GENERATE LOSS & ACCURACY GRAPHS ---
 def plot_final_results(history):
@@ -82,6 +82,6 @@ def plot_final_results(history):
     plt.tight_layout()
     plt.savefig('final_clahe_report.png')
     plt.show()
-    print("📈 Final report saved as 'final_clahe_report.png'")
+    print("Final report saved as 'final_clahe_report.png'")
 
 plot_final_results(history)
