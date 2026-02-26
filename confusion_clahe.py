@@ -26,7 +26,7 @@ model = load_model(MODEL_PATH)
 
 test_datagen = ImageDataGenerator(preprocessing_function=apply_clahe_rgb)
 test_gen = test_datagen.flow_from_directory(
-    'dataset_fundus/test',
+    'raw_data',
     target_size=IMG_SIZE,
     batch_size=1,
     shuffle=False,

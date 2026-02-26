@@ -6,13 +6,13 @@ from tensorflow.keras.applications.efficientnet import preprocess_input
 import matplotlib.pyplot as plt
 import os
 
-# --- 1. CONFIGURATION ---
+# 1. CONFIGURATION
 IMG_SIZE = (300, 300)  # B3 requirement
 BATCH_SIZE = 20        # Reduced slightly because B3 uses more VRAM/Memory
 EPOCHS = 20
 DATA_DIR = 'dataset_fundus'
 
-# --- 2. DATA PREPARATION ---
+# 2. DATA PREPARATION 
 train_datagen = ImageDataGenerator(
     preprocessing_function=preprocess_input,
     rotation_range=20,
@@ -40,7 +40,7 @@ val_gen = val_datagen.flow_from_directory(
     shuffle=False
 )
 
-# --- 3. MODEL ARCHITECTURE (B3 Upgrade) ---
+# 3. MODEL ARCHITECTURE (B3 Upgrade)
 print("Building EfficientNet-B3 Model...")
 conv_base = EfficientNetB3(weights='imagenet', include_top=False, input_shape=(300, 300, 3))
 conv_base.trainable = False  # Start by freezing the base
@@ -56,7 +56,7 @@ model = models.Sequential([
 
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
-# --- 4. TRAINING ---
+# 4. TRAINING
 print("Starting Training Phase...")
 history = model.fit(
     train_gen,
@@ -64,11 +64,11 @@ history = model.fit(
     epochs=EPOCHS
 )
 
-# --- 5. SAVING MODEL & PLOTTING ---
+# 5. SAVING MODEL & PLOTTING
 model.save('eye_model_b3.keras')
 print("Model Saved as eye_model_b3.keras")
 
-# --- 6. GENERATE & SAVE GRAPHS ---
+# 6. GENERATE & SAVE GRAPHS 
 def plot_and_save_history(history):
     acc = history.history['accuracy']
     val_acc = history.history['val_accuracy']

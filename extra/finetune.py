@@ -66,7 +66,7 @@ class_weights = {
     3: 5.8  # Normal
 }
 
-print("🚀 Starting Surgical Fine-Tuning...")
+print("Starting Surgical Fine-Tuning...")
 model.fit(
     train_gen,
     validation_data=test_gen,
